@@ -1,0 +1,109 @@
+\documentclass[10pt,conference, onecolumn]{IEEEtran}
+
+\ifCLASSINFOpdf
+   \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+   \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+   \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  \DeclareGraphicsExtensions{.eps}
+\fi
+
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{algorithmic}
+\usepackage[Algoritmo]{algorithm}
+\usepackage[spanish,USenglish]{babel}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black, urlcolor=black, filecolor=black bookmarks=false]{hyperref}
+\usepackage{subfigure}
+
+
+\addto\captionsspanish{
+ \def\tablename{Tabla}}
+
+
+\begin{document}
+
+\pagestyle{empty}  
+
+\selectlanguage{spanish}
+
+\title{Informe trabajo práctico número uno - Aprendizaje Automático}
+
+\author{\IEEEauthorblockN{Omar Ernesto Cabrera Rosero}
+\IEEEauthorblockA{Universidad de Buenos Aires\\
+%Buenos Aires, Argentina\\
+Email: omarcabrera@udenar.edu.co}
+\and
+\IEEEauthorblockN{Jimmy Mateo Guerrero Restrepo}
+\IEEEauthorblockA{Universidad de Buenos Aires\\
+%Buenos Aires, Argentina\\
+Email: jimaguere@gmail.com}
+}
+
+\maketitle
+
+%\selectlanguage{USenglish}
+\begin{abstract}
+
+En este trabajo práctico se analizan las particularidades de la utilización de
+algoritmos para la generación de árboles de decisión, para la realización de este
+trabajo se utilizó un conjunto de datos de las pruebas de estado saberpro que se realizan 
+en Colombia a estudiantes universitarios ...
+
+\end{abstract}
+ 
+\selectlanguage{spanish}
+
+
+\begin{IEEEkeywords}
+árboles de decisión, J48, ICFES, saberpro
+\end{IEEEkeywords}
+
+\thispagestyle{empty} 
+
+\IEEEpeerreviewmaketitle
+
+\input{introduction.tex}
+\input{overfitting.tex}
+\input{missing.tex}
+\input{noise.tex}
+\input{discretize.tex}
+\input{conclusions.tex}
+
+
+
+%\appendices
+%\section{Repositorio}
+%El código fuente y conjunto de datos se encuentran en el repositorio de github.
+
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+\bibliographystyle{IEEEtran}
+
+\bibliography{IEEEabrv,bibliography}
+
+
+
+\end{document}
