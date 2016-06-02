@@ -1,10 +1,48 @@
 \section{Introducción}
-\definecolor{lightgray}{gray}{0.9}
-A continuación se detallan las características de los atributos contemplados:
-\begin{table}[H]
+
+El objetivo del presente informe es presentar los resultados del análisis del
+comportamiento del algoritmo de aprendizaje de árboles de decisión J48 en función del
+Confidence Factor (CF) y evaluar aspectos como el sobreajuste y su robustez ante
+variaciones en el conjunto de datos. La variaciones en el conjunto de datos fueron 
+teniendo en cuenta: datos faltantes, la tolerancia al ruido y la
+discretización de atributos numéricos.
+
+El conjunto de datos utilizado es de las pruebas de estado Saber Pro 2012-1 en Colombia,
+uno de los objetivos del examen de estado de calidad de la educación superior Saber
+Pro, según el decreto 3963 del 14 de octubre de 2009, Ministerio de Educación
+Nacional \cite{men2009}, es comprobar el grado de desarrollo de competencias de los
+estudiantes próximos a culminar los programas académicos de pregrado que ofrecen
+las instituciones de educación superior. El examen está compuesto por pruebas que
+evalúan competencias genéricas y específicas. De acuerdo a los lineamientos Saber
+Pro del Instituto colombiano para el Fomento de la Educación Superior \cite{icfes2011},
+todos los estudiantes deben presentar los módulos de competencias genéricas sin
+importar el programa de formación que cursen, que incluye competencias de
+razonamiento cuantitativo, lectura crítica, escritura e inglés.
+
+En la competencia de razonamiento cuantitativo se evalúan los desempeños
+relacionados con uso de lenguaje cuantitativo y solución de problemas \cite{icfes2012a}.
+En la competencia de lectura crítica se evalúan los desempeños asociados a lectura,
+pensamiento crítico y entendimiento interpersonal \cite{icfes2012a}. En escritura se
+evalúa la competencia para comunicar ideas por escrito referidas a un tema dado
+\cite{icfes2011} \cite{icfes2012a}. En inglés se evalúa la competencia del estudiante para
+comunicarse efectivamente en inglés.
+
+El conjunto de datos pertenece a los datos de las pruebas Saber Pro 2012-1, la cual cuenta con
+94 variables y 97.068 registros, a este conjunto de datos se le realizó un tratamiento de transformación
+de variables para reducir la dimesión, con esto se obtuvo un nuevo conjunto de datos con 31 variables y
+96.775 registros. 
+
+Las variables que se usaron para el análisis representan, información personal del estudiante como lo muestra
+la tabla~\ref{table:estu}, información familiar del estudiante  como lo muestra la tabla~\ref{table:fami},
+información de la institución que cursa el estudiante como lo muestra la tabla~\ref{table:inst} y la información socio-económica
+del estudiante como lo muestra la tabla~\ref{table:socioeconomica}.
+
+
+
+\begin{table*}[ht]
 \caption{Información personal estudiante}
+\label{table:estu}
 \rowcolors{1}{}{lightgray}
-\begin{flushleft}
 \begin{tabular}{|>{\centering\arraybackslash}m{2cm}|>{\arraybackslash}m{4cm}|>{\arraybackslash}m{2cm}|>{\arraybackslash}m{3cm}|>{\arraybackslash}m{4cm}| }
 \hline
   \rowcolor{blue!55} 
@@ -34,14 +72,12 @@ A continuación se detallan las características de los atributos contemplados:
     least = AGRONOMIA VETERINARIA Y AFINES(1523) \\ \hline
     Atributo & num\_estu\_zona & Cualitativa ordinal & Nivel estudiantes por zona  & mode = Media(56900), least=Baja(6408) \\ \hline
   \end{tabular}
-\end{flushleft}
-\label{}
-\end{table}
+\end{table*}
 
-\begin{table}[H]
+\begin{table*}[ht]
 \caption{Información familiar estudiante}
+\label{table:fami}
 \rowcolors{1}{}{lightgray}
-\begin{flushleft}
 \begin{tabular}{|>{\centering\arraybackslash}m{2cm}|>{\arraybackslash}m{4cm}|>{\arraybackslash}m{2cm}|>{\arraybackslash}m{3cm}|>{\arraybackslash}m{4cm}| }
 \hline
   \rowcolor{blue!55} 
@@ -54,14 +90,12 @@ A continuación se detallan las características de los atributos contemplados:
     Atributo & fami\_nivel\_sisben & Cualitativa ordinal & Su familia está clasificada en el nivel 1, 2 ó 3 del SISBEN? & mode = No está clasificada por el SISBEN(54353), least = Está clasificada en otro nivel(804)\\ \hline
     Atributo & fami\_ing\_fmliar\_mensual & Cualitativa ordinal & Cuál es el total de ingresos mensuales de su hogar habitual o permanente (por trabajo u otros conceptos) en salarios mínimos:SM-? & mode = DOS SALARIOS(30151), least = SIETE SALARIOS(4033) \\ \hline
     \end{tabular}
-\end{flushleft}
-\label{}
-\end{table}
+\end{table*}
 
-\begin{table}[H]
+\begin{table*}[ht]
 \caption{ Información institución  estudiante}
+\label{table:inst}
 \rowcolors{1}{}{lightgray}
-\begin{flushleft}
 \begin{tabular}{|>{\centering\arraybackslash}m{2cm}|>{\arraybackslash}m{4cm}|>{\arraybackslash}m{2cm}|>{\arraybackslash}m{3cm}|>{\arraybackslash}m{4cm}| }
 \hline
   \rowcolor{blue!55} 
@@ -73,13 +107,12 @@ A continuación se detallan las características de los atributos contemplados:
     Atributo & inst\_programa\_zona & Cualitativa Nominal & Zona del programa de estudio del alumno. & mode = BOGOTA(33467) , least = MARINILLA(2) \\ \hline
     Atributo & num\_instituciones\_zona & Cualitativa ordinal & Nivel instituciones por zona  & mode = Alta(49946), least = Baja (19903) \\ \hline
   \end{tabular}
-\end{flushleft}
-\label{}
-\end{table}
-\begin{table}[H]
+\end{table*}
+
+\begin{table*}[ht]
 \caption{Información socioeconómica estudiante}
+\label{table:socioeconomica}
 \rowcolors{1}{}{lightgray}
-\begin{flushleft}
 \begin{tabular}{|>{\centering\arraybackslash}m{2cm}|>{\arraybackslash}m{4cm}|>{\arraybackslash}m{2cm}|>{\arraybackslash}m{3cm}|>{\arraybackslash}m{4cm}| }
 \hline
 \rowcolor{blue!55}  
@@ -90,8 +123,8 @@ Atributo & eco\_condicion\_transporte & Cualitativa ordinal & Condición económ
 Atributo & eco\_condicion\_tic & Cualitativa ordinal & Condición tecnológica hogar. & mode = CONDICION HOGAR BUENA(85270), least = CONDICION HOGAR MALA(4706) \\ \hline
 Atributo & eco\_condicion\_vive & Cualitativa ordinal & Condición hacinamiento vivienda. & mode = SIN HACINAMIENTO(93333), least = HACINAMIENTO CRITICO(445) \\ \hline
 \end{tabular}
-\end{flushleft}
-\label{}
-\end{table}
+\end{table*}
 
-\cite{mitchell1997machine}
+La elección del conjunto de datos se fundó en las características enunciadas en \cite{mitchell1997machine} con respecto a la clase
+de problemas que son apropiados para trabajar con árboles de decisión particularmente el hecho de que cada 
+atributo toma un número pequeño de valores posibles. 
