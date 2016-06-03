@@ -1,7 +1,15 @@
 \subsection{Tratamiento de datos faltantes}
 
+\textbf{Descripción}: En la práctica, es común encontrarse y tener que trabajar con datasets que
+contienen datos nulos o incompletos. Existen distintos métodos para tratar con ellos, en esta sección
+se exploraron dos. Los cuales tratan de rellenar los datos faltantes con el valor modal del
+atributo, y se diferencian en que uno toma en cuenta el valor de la clase para el individuo o registro
+analizado, mientras que el otro no tiene en cuenta el valor de la clase.
+
+
+\textbf{Metodología utilizada}:
 Para el tratamiento de datos faltantes se indujo valores nulos al 80\% del dataset en los atributos con mayor GainRatio,
-se preservó el 20\% de los datos para validación.A continuación se detallan las características de los atributos contemplados:
+se preservó el 20\% de los datos para validación. A continuación se detallan las características de los atributos contemplados:
 
 \definecolor{lightgray}{gray}{0.9}
 \begin{table}[H]
@@ -19,11 +27,19 @@ se preservó el 20\% de los datos para validación.A continuación se detallan l
 \label{}
 \end{table}
 
-El porcentaje de imputación de Missings fue variando de 0 a 0.85 con incrementos de 0.025 generando 36 datasets con datos faltantes. 
-En cada generación de Missing ,se relleno con la  moda los datos nulos del atributo inst\_acreditada  y con la modaclase para 
+El porcentaje de imputación de datos faltantes fue variando de 0 a 0.85 con incrementos de 0.025 generando
+36 datasets con datos faltantes. 
+En cada generación de datos faltantes, se relleno con la  moda los datos nulos del atributo inst\_acreditada  y con la modaclase para 
 los valores nulos del atributo estu\_metodo\_prgm. Después se construyeron modelos con las estrategias
 de relleno de datos faltantes anteriormente descritas variando el CF (Confidence Factor) de 0 a 0.5 y 
 finalmente se evaluaron los mismos con el set de validación.
+
+\textbf{Resultados esperados}: La performance sobre el set de validación no debería verse
+sensiblemente afectada, al menos al introducir proporciones bajas o medias de datos faltantes, 
+dada la robustez del algoritmo J48 para lidiar con esta problemática. 
+
+Con respecto al tamaño del árbol, es de esperar que el mismo aumente
+a medida que aumenta la función de poda y no por el porcentaje inducido de datos faltantes. 
 
 \begin{figure}
   \centering
@@ -32,8 +48,33 @@ finalmente se evaluaron los mismos con el set de validación.
   \label{fig:4a}
 \end{figure}
 
+\textbf{Análisis de los resultados}: En la figura~\ref{fig:4a} Accuracy vs Confidence factor with missing data,
+se observa un patrón de comportamiento en las curvas de entrenamiento y validación para la accuracy,
+dicho patron es similar a las curvas generadas en las corridas donde no se imputaron datos faltantes,
+esto nos dice que el algoritmo J48 presenta resistencia y robustez a datos faltantes 
+ya que la performance se ve afectada más por la función de poda que por la imputación de datos faltantes.
 
-En la figura~\ref{fig:4b} Accuracy vs Confidence factor with missing data,
+En la figura~\ref{fig:4b} Leaves vs missing percentage, 
+se observa claramente que el tamaño del árbol  incrementa debido al aumento de la función de poda 
+(confidence factor), respecto al porcentaje de datos faltantes no se mira que este afecte en el tamaño del arbol.
+
+En la figura~\ref{fig:4c} Accuracy vs missing percentage,se observa un comportamiento similar
+para los diferentes porcentajes de datos faltantes imputados,  la performance se comporta de igual forma manteniendo
+la variación debido a la función de poda independientemente del porcentaje de datos faltantes.
+
+Los anteriores supuestos los podemos confirmar claramente en la figura~\ref{fig:4d} Missing Percentage vs Confidence Factor,
+donde se puede mirar que a valores bajos CF hay un alto performance en el set de datos de validación, y a
+medida que aumenta el valor de CF (eje x), también aumenta el valor de la performance del set de entrenamiento (tamaño
+de la burbuja) así como baja la performance del set de testing (color de la burbuja) por este motivo el arbol se sobre ajusta
+al conjunto de entrenamiento. 
+Esta lectura es posible realizarla según el porcentaje de datos faltantes (de 0 a 0,85, en el eje Y; Cada serie de burbujas horizontales
+corresponden al mismo experimento).
+
+\textbf{Conclusión:} Los resultados se presentaron, en mayor o menor medida, en línea con lo esperado. La performance no 
+se vio sensiblemente deteriorada al igual que el tamaño del árbol, aliniandose a los resultados esperados. 
+por tanto  el algoritmo de árboles J48 es robusto a datos faltantes
+ya que el rendimiento y  tamaño del árbol observados en los gráficos  se ven afectados por la función de poda y no por la
+variación de datos faltantes.
 
 \begin{figure}
   \centering
@@ -41,13 +82,6 @@ En la figura~\ref{fig:4b} Accuracy vs Confidence factor with missing data,
   \caption{Leaves vs missing percentage}
   \label{fig:4b}
 \end{figure}
-
-En la figura~\ref{fig:4c} Accuracy vs Confidence factor with missing data,
-
-En el gráfico se observa un patrón de comportamiento en las curvas de training y de test para la accuracy
-similares a las curvas generadas en las corridas donde no se imputaron datos faltantes,
-esto nos dice que el algoritmo J48 presenta resistencia y robustez a datos faltantes independientemente de la función de poda.
-
 
 \begin{figure}
   \centering
