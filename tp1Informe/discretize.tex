@@ -29,34 +29,22 @@ Sección II.
 \textbf{Análisis de los resultados:} Los resultados obtenidos una vez realizado el experimento
 se pueden resumir en las figuras presentadas a continuación.
 
-Las figuras~\ref{fig:6a}, \ref{fig:6b} y \ref{fig:6c} hace referencia a la discretización supervisada, se puede
-dar cuenta que son muy similares a la figuras de la subseccion sobreajuste y poda en la cual no hay discretización.
+La figura~\ref{fig:overdis}, hace referencia a la discretización supervisada, se puede
+dar cuenta que son muy similares a la figuras de sobreajuste y poda sin discretización.
 
 
-\begin{figure}
+\begin{figure*}
   \centering
-  \includegraphics[width = 8cm]{6a.pdf}
-  \caption{Leaves vs CF}
-  \label{fig:6a}
-\end{figure}
+  \subfigure[Leaves vs CF]{\label{b1} 
+\includegraphics[width = 7cm]{6a.pdf}}
+  \subfigure[Accuracy vs CF]{\label{b2}
+\includegraphics[width = 7cm]{6b.pdf}}
+    \subfigure[ROC curve better tree]{\label{b3}
+\includegraphics[width = 7cm]{6c.pdf}}
+  \caption{overfitting and pruning discretize}
+  \label{fig:overdis}
+\end{figure*}
 
-En la figura~\ref{fig:6b} se muestra la grafica de la curva ROC para el mejor árbol,
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 8cm]{6b.pdf}
-  \caption{Accuracy vs CF}
-  \label{fig:6b}
-\end{figure}
-
-En la figura~\ref{fig:6c} se muestra la grafica de la curva ROC para el mejor árbol,
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 8cm]{6c.pdf}
-  \caption{Curva ROC mejor árbol}
-  \label{fig:6c}
-\end{figure}
 
 En la figura~\ref{fig:6d} se observa que hay un nivel de asociación positivo entre los bins
 utilizados en la estrategia de discretización y los nodos del árbol de clasificación, en línea
@@ -71,15 +59,17 @@ más fuerte en una o en otra.
   \label{fig:6d}
 \end{figure}
 
-En la figura~\ref{fig:discretize} muetran la precisión del árbol en función del CF para la discretización por frecuencia y densidad respectivamente, se observa que las precisiones se encuentran en la discretización por densidad pero la diferencia es muy mínima.
+En la figura~\ref{fig:discretize} muetran la precisión del árbol en función del CF para la discretización
+por frecuencia y densidad respectivamente, se observa que las precisiones se encuentran en la discretización
+por densidad pero la diferencia es muy mínima.
 
 
 \begin{figure*}
   \centering
   \subfigure[Frequency discretize]{\label{b1} 
-\includegraphics[width = 8cm]{6e.pdf}}
+\includegraphics[width = 7cm]{6e.pdf}}
   \subfigure[Density discretize]{\label{b2}
-\includegraphics[width = 8cm]{6f.pdf}}
+\includegraphics[width = 7cm]{6f.pdf}}
   \caption{Accuracy vs CF (Discretización)}
   \label{fig:discretize}
 \end{figure*}

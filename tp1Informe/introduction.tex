@@ -3,8 +3,8 @@
 El objetivo del presente informe es presentar los resultados del análisis del
 comportamiento del algoritmo de aprendizaje de árboles de decisión J48 en función del
 Confidence Factor (CF) y evaluar aspectos como el sobreajuste y su robustez ante
-variaciones en el conjunto de datos. La variaciones en el conjunto de datos fueron 
-teniendo en cuenta: datos faltantes, la tolerancia al ruido y la
+variaciones en el conjunto de datos. La variaciones en el conjunto de datos que fueron 
+tenidas en cuenta fueron: datos faltantes, la tolerancia al ruido y la
 discretización de atributos numéricos.
 
 El conjunto de datos utilizado es de las pruebas de estado Saber Pro 2012-1 en Colombia,
@@ -39,7 +39,8 @@ del estudiante como lo muestra la tabla~\ref{table:socioeconomica}.
 
 
 
-\begin{table*}[ht]
+\begin{table*}
+\begin{center}
 \caption{Información personal estudiante}
 \label{table:estu}
 \rowcolors{1}{}{lightgray}
@@ -74,9 +75,11 @@ del estudiante como lo muestra la tabla~\ref{table:socioeconomica}.
     Atributo & num\_estu\_zona & Cualitativa ordinal & Nivel estudiantes por zona  & mode = Media(56900), least=Baja(6408) \\ \hline
   \end{tabular}
 }
+\end{center}
 \end{table*}
 
-\begin{table*}[ht]
+\begin{table*}
+\begin{center}
 \caption{Información familiar estudiante}
 \label{table:fami}
 \rowcolors{1}{}{lightgray}
@@ -94,9 +97,11 @@ del estudiante como lo muestra la tabla~\ref{table:socioeconomica}.
     Atributo & fami\_ing\_fmliar\_mensual & Cualitativa ordinal & Cuál es el total de ingresos mensuales de su hogar habitual o permanente (por trabajo u otros conceptos) en salarios mínimos:SM-? & mode = DOS SALARIOS(30151), least = SIETE SALARIOS(4033) \\ \hline
     \end{tabular}
 }
+\end{center}
 \end{table*}
 
-\begin{table*}[ht]
+\begin{table*}
+\begin{center}
 \caption{ Información institución  estudiante}
 \label{table:inst}
 \rowcolors{1}{}{lightgray}
@@ -113,9 +118,11 @@ del estudiante como lo muestra la tabla~\ref{table:socioeconomica}.
     Atributo & num\_instituciones\_zona & Cualitativa ordinal & Nivel instituciones por zona  & mode = Alta(49946), least = Baja (19903) \\ \hline
   \end{tabular}
 }
+\end{center}
 \end{table*}
 
-\begin{table*}[ht]
+\begin{table*}
+\begin{center}
 \caption{Información socioeconómica estudiante}
 \label{table:socioeconomica}
 \rowcolors{1}{}{lightgray}
@@ -131,6 +138,7 @@ Atributo & eco\_condicion\_tic & Cualitativa ordinal & Condición tecnológica h
 Atributo & eco\_condicion\_vive & Cualitativa ordinal & Condición hacinamiento vivienda. & mode = SIN HACINAMIENTO(93333), least = HACINAMIENTO CRITICO(445) \\ \hline
 \end{tabular}
 }
+\end{center}
 \end{table*}
 
 La elección del conjunto de datos se fundó en las características enunciadas en \cite{mitchell1997machine} con respecto a la clase

@@ -1,1 +1,46 @@
 \section{Conclusiones}
+
+Para el conjunto de datos con el que se realizaron los diversos experimentos se concluye
+que:
+
+\begin{itemize}
+ \item A nivel general, en los distintos experimentos el algoritmo de clasificación se
+mostró robusto ante las distintas perturbaciones inducidas (datos faltantes, ruido,
+discretización).
+
+  \item Los valores de CF tienen una relación positiva con el tamaño del árbol medido en
+cantidad de nodos, a mayores valores de CF el árbol es más grande. Asimismo
+que al dejarse crecer el árbol la performance sobre el conjunto de entrenamiento
+mejora, mientras que sobre el conjunto de validación mejora ligeramente hasta un
+cierto punto (CF entre 15 y 18\%) y luego disminuye hasta mantenerse casi
+constante. Todo esto pone de manifiesto la importancia que tiene la función de
+poda para evitar el efecto de overfitting y la obtención de hipótesis cortas pero
+robustas en relación al conjunto de validación.
+
+  \item Al trabajar con datos faltantes, la performance sobre el set de validación no se vio
+afectada de forma significativa, en especial a niveles medios / altos de CF (desde
+25\% en adelante). Se observó una relación inversa entre el tamaño del árbol y el
+porcentaje de faltantes. En cuanto a las estrategias de relleno, con modaclase los
+resultados fueron notoriamente mejores a los de moda, consiguiendo incluso
+niveles de clasificación por encima de los obtenidos al trabajar con el dataset
+original. Este fenómeno podría ser objeto de un análisis más específico.
+
+  \item Para bajos porcentajes ruido y podas severas, los efectos tanto sobre la cantidad
+de nodos o tamaño de árbol y la performance en el conjunto de validación no
+siguen una tendencia clara, manteniéndose en valores similares a los iniciales;
+sin embargo para valores extremos tanto de ruido como de CF, se hace evidente
+el incremento en la cantidad de nodos y la disminución de performance sobre el
+conjunto de validación. Se puede decir que el árbol es robusto al ruido hasta un
+cierto punto, el cual una vez superado tiende al fenómeno conocido como
+overfitting.
+
+  \item En cuanto al apartado de discretización, los resultados no fueron concluyentes.
+Con las dos estrategias no supervisadas empleadas se obtuvieron resultados
+similares en términos de tamaño del árbol y performance, imposibilitando elegir
+una por sobre la otra. La discretización supervisada mostró ser la técnica
+adecuada para niveles de CF superiores al 25\%, con un nivel de performance por
+encima de la obtenida al trabajar con el dataset sin discretizar
+
+
+\end{itemize}
+
